@@ -13,9 +13,27 @@ public class Web {
 		this.captureSpiral = new ArrayList<WebStrand>();
 	}
 
+	
+	public void clear() {
+		this.radii.clear();
+		this.captureSpiral.clear();
+	}
+	
+	public void set(Web other) {
+		this.clear();
+		for (WebStrand s : other.radii) {
+			this.radii.add(s.clone());
+		}
+		for (WebStrand s : other.captureSpiral) {
+			this.captureSpiral.add(s.clone());
+		}
+	}
+	
+	
+	
 	public static Web BuildPerfectWeb(int numRadii, int numCircles, float radiusLength, float lastCircleDistance){
 		Web web = new Web();
-		double theta = Math.PI/numRadii;
+		double theta = 2*Math.PI/numRadii;
 		
 		// Set up the radii
 		for (int i = 0; i < numRadii; i++) {
@@ -24,14 +42,20 @@ public class Web {
 		}
 		
 		// Write the circles
-		for (WebStrand r : web.radii) {
-			for (int i = 0; i < numCircles; i++) {
-				
+		float radialDistance = lastCircleDistance/(numCircles); 
+		
+		for (int i = 0; i < web.radii.size(); i++) {
+			Vector2 thisRad = web.radii.get(i).end;
+			Vector2 nextRad = web.radii.get((i+1) % web.radii.size()).end;
+			for (int circle = 1; circle <= numCircles; circle++) {
+				web.captureSpiral.add(new WebStrand(thisRad.clone().mul(circle*radialDistance),
+													nextRad.clone().mul(circle*radialDistance)));
 			}
-			
 		}
 		
 		return web;
 	}
+	
+	
 	
 }
