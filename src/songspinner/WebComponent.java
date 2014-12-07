@@ -17,7 +17,8 @@ public class WebComponent extends JComponent{
 	}
 	
 	public WebComponent(){
-		this(Web.BuildPerfectWeb(10, 10, 1, .7f));
+		this(Web.BuildLinearWeb(5, 5, 1, .7f, 1f));
+//		this(Web.BuildPerfectWeb(5, 5, 1, .7f));
 	}
 	
 	public void clearWeb() {
