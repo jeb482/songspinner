@@ -57,6 +57,7 @@ public class Web {
 			thisAngle = (float)((i+thisNoise)*theta);
 			Vector2 endpoint = new Vector2((float)Math.cos(thisAngle), (float)Math.sin(thisAngle));
 			web.thetas.add(thisAngle);
+			System.out.println(thisAngle);
 			web.radii.add(new WebStrand(web.center, endpoint));
 		}
 		
@@ -94,10 +95,7 @@ public class Web {
 		for (int i = 0; i < numRotations*this.radii.size(); i++) {
 			spider.updatePosition(displaySize);
 			parent.repaint();
-			player.playNote(40 + spider.circle*captureSpiral.size()/radii.size() + spider.radius, 400);
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e){}
+			player.playNote(40 + spider.circle*captureSpiral.size()/radii.size() + spider.radius, (int)(300*thetas.get(spider.radius)));
 		}
 		
 		//parent.spider = null;

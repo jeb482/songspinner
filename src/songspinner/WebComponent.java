@@ -62,12 +62,12 @@ public class WebComponent extends JComponent{
 //			System.out.println("Drawing radius: " + start + " " + end);
 		}
 		
-		if (spider != null) {
-			System.out.println("Not null");
-			g.setColor(WebComponent.SPIDER_COLOR);
-			Vector2i pos = spider.pos;
-			g.fillOval(pos.x, pos.y, 4, 4);
-		}
+//		if (spider != null) {
+//		//	System.out.println("Not null");
+//			g.setColor(WebComponent.SPIDER_COLOR);
+//			Vector2i pos = spider.pos;
+//			g.fillOval(pos.x, pos.y, 4, 4);
+//		}
 		
 		
 	}
