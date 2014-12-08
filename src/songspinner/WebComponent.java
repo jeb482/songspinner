@@ -21,8 +21,14 @@ public class WebComponent extends JComponent{
 //		this(Web.BuildPerfectWeb(5, 5, 1, .7f));
 	}
 	
+	public void setWeb(Web w) {
+		this.web.set(w);
+		this.repaint();
+	}
+	
 	public void clearWeb() {
 		this.web.clear();
+		this.repaint();
 	}
 	
 	@Override

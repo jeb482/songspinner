@@ -1,6 +1,8 @@
 package songspinner;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -17,21 +19,46 @@ public class SongSpinner extends java.applet.Applet {
 		final WebComponent webComp = new WebComponent();
 		webComp.setPreferredSize(new Dimension(512,512));
 		mainFrame.getContentPane().add(webComp, BorderLayout.CENTER);
-//		for (WebStrand s : webComp.web.radii) {
-//			System.out.println(s.start + " " + s.end);
-//		}
-		for (float theta : webComp.web.thetas) {
-			System.out.println(theta);
-		}
-		
-		
+
 		
 		JPanel buttonsPanel = new JPanel();
 		JButton perfectWebButton = new JButton("Perfect Web");
+		JButton randomLinearButton = new JButton("Random Linear");
+		JButton PlayButton = new JButton("Play Web");
 		JButton clearWebButton = new JButton("Clear Web");
 		buttonsPanel.add(perfectWebButton);
+		buttonsPanel.add(randomLinearButton);
 		buttonsPanel.add(clearWebButton);
-		mainFrame.getContentPane().add(buttonsPanel, BorderLayout.WEST);
+		mainFrame.getContentPane().add(buttonsPanel, BorderLayout.SOUTH);
+		
+		// Callback Functions
+		
+		perfectWebButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				webComp.setWeb(Web.BuildPerfectWeb(10, 10, 1, .7f));
+			}
+			
+		});
+		
+		randomLinearButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				webComp.setWeb(Web.BuildLinearWeb(10, 10, 1, .7f, .5f));
+			}
+			
+		});
+		
+		clearWebButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				webComp.clearWeb();
+			}
+			
+		});
 		
 		
 		mainFrame.pack();
