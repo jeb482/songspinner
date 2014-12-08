@@ -17,10 +17,13 @@ public class SongSpinner extends java.applet.Applet {
 		final WebComponent webComp = new WebComponent();
 		webComp.setPreferredSize(new Dimension(512,512));
 		mainFrame.getContentPane().add(webComp, BorderLayout.CENTER);
-		for (WebStrand s : webComp.web.radii) {
-			System.out.println(s.start + " " + s.end);
+//		for (WebStrand s : webComp.web.radii) {
+//			System.out.println(s.start + " " + s.end);
+//		}
+		for (float theta : webComp.web.thetas) {
+			System.out.println(theta);
 		}
-		webComp.repaint();
+		
 		
 		
 		JPanel buttonsPanel = new JPanel();

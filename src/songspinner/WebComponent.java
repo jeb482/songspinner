@@ -43,7 +43,7 @@ public class WebComponent extends JComponent{
 			Vector2i start = s.getStartPixel(displaySize);
 			Vector2i end = s.getEndPixel(displaySize);
 			g.drawLine(start.x, start.y, end.x, end.y);
-			System.out.println("Drawing radius: " + start + " " + end);
+//			System.out.println("Drawing radius: " + start + " " + end);
 		}
 		
 		for (WebStrand s : this.web.captureSpiral) {
@@ -51,7 +51,7 @@ public class WebComponent extends JComponent{
 			Vector2i start = s.getStartPixel(displaySize);
 			Vector2i end = s.getEndPixel(displaySize);
 			g.drawLine(start.x, start.y, end.x, end.y);
-			System.out.println("Drawing radius: " + start + " " + end);
+//			System.out.println("Drawing radius: " + start + " " + end);
 		}
 		
 		

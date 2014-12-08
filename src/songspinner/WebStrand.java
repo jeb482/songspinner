@@ -33,4 +33,8 @@ public class WebStrand {
 	public WebStrand clone() {
 		return new WebStrand(this.start, this.end, this.color);
 	}
+	
+	public float getLength() {
+		return this.start.dist(end);
+	}
 }

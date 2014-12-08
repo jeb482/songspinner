@@ -6,12 +6,14 @@ import egl.math.Vector2;
 public class Web {
 	final Vector2 center = new Vector2();
 	ArrayList<WebStrand> radii; 
+	ArrayList<Float> thetas;
 	ArrayList<WebStrand> captureSpiral;
 
 
 	public Web() {
 		this.radii = new ArrayList<WebStrand>();
 		this.captureSpiral = new ArrayList<WebStrand>();
+		this.thetas = new ArrayList<Float>();
 	}
 
 	
@@ -28,9 +30,10 @@ public class Web {
 		for (WebStrand s : other.captureSpiral) {
 			this.captureSpiral.add(s.clone());
 		}
+		for (float theta : other.thetas) {
+			this.thetas.add(theta);
+		}
 	}
-	
-	
 	
 	public static Web BuildPerfectWeb(int numRadii, int numCircles, float radiusLength, float lastCircleDistance){
 		return BuildLinearWeb(numRadii, numCircles, radiusLength, lastCircleDistance, 0);
@@ -41,6 +44,7 @@ public class Web {
 		Web web = new Web();
 		double theta = 2*Math.PI/numRadii;
 		Random rand = new Random();
+		float thisAngle;
 		float firstNoise;
 		float thisNoise;
 		float nextNoise;
@@ -48,7 +52,9 @@ public class Web {
 		// Set up the radii
 		for (int i = 0; i < numRadii; i++) {
 			thisNoise = noiseLevel*rand.nextFloat();
-			Vector2 endpoint = new Vector2((float)Math.cos((i+thisNoise)*theta), (float)Math.sin((i+thisNoise)*theta));
+			thisAngle = (float)((i+thisNoise)*theta);
+			Vector2 endpoint = new Vector2((float)Math.cos(thisAngle), (float)Math.sin(thisAngle));
+			web.thetas.add(thisAngle);
 			web.radii.add(new WebStrand(web.center, endpoint));
 		}
 		
