@@ -9,7 +9,9 @@ import javax.swing.JComponent;
 import egl.math.Vector2i;
 
 public class WebComponent extends JComponent{
+	private static Color SPIDER_COLOR = Color.MAGENTA;
 	Web web;
+	Spider spider;
 	
 	public WebComponent(Web web){
 		super();
@@ -60,7 +62,26 @@ public class WebComponent extends JComponent{
 //			System.out.println("Drawing radius: " + start + " " + end);
 		}
 		
+		if (spider != null) {
+			System.out.println("Not null");
+			g.setColor(WebComponent.SPIDER_COLOR);
+			Vector2i pos = spider.pos;
+			g.fillOval(pos.x, pos.y, 4, 4);
+		}
 		
+		
+	}
+	
+	public void playWeb() {
+		web.playWeb(new NotePlayer(), 1, 1, 3,this);
+	}
+	
+	public int getDisplaySize() {
+		Dimension dim = this.getSize();
+		int xMax = (int) dim.getWidth();
+		int yMax = (int) dim.getHeight();
+		
+		return (xMax > yMax) ? yMax : xMax;
 	}
 
 	

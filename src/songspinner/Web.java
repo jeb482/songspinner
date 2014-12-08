@@ -1,7 +1,9 @@
 package songspinner;
 import java.util.ArrayList;
 import java.util.Random;
+
 import egl.math.Vector2;
+import egl.math.Vector2i;
 
 public class Web {
 	final Vector2 center = new Vector2();
@@ -82,5 +84,39 @@ public class Web {
 		}
 		return web;
 	}	
+	
+	public void playWeb(NotePlayer player, int startCircle, int startRadius, int numRotations, WebComponent parent) {
+		int displaySize = parent.getDisplaySize();
+		Spider spider = new Spider(this, startCircle, startRadius);
+		parent.spider = spider;
+		parent.repaint();
+		
+		for (int i = 0; i < numRotations*this.radii.size(); i++) {
+			spider.updatePosition(displaySize);
+			parent.repaint();
+			player.playNote(40 + spider.circle*captureSpiral.size()/radii.size() + spider.radius, 400);
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e){}
+		}
+		
+		//parent.spider = null;
+		parent.repaint();
+	}
+	
+	public Vector2 getNodeLocation(int circle, int radius) {
+		return this.captureSpiral.get(circle * this.radii.size() + radius).start.clone();
+	}
+	
+	public Vector2i toVector2i(Vector2 p, int displaySize) {
+		int x = (int) ((displaySize/2) * (1+p.x));
+		int y = (int) ((displaySize/2) * (1+p.y));
+		return new Vector2i(x,y);
+	}
+	
+	
+	public int nextNode(int circle, int radius) {
+		return 0;
+	}
 	
 }

@@ -1,3 +1,5 @@
+package songspinner;
+
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.Synthesizer;
 import javax.sound.midi.MidiChannel;
@@ -49,11 +51,6 @@ public class NotePlayer {
 			player.playNote(i,200);
 			
 		}
-		
-//		try {
-//			Thread.sleep(5);
-//		}
-//		catch (InterruptedException e){}
 	}
 
 

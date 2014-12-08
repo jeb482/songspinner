@@ -24,11 +24,12 @@ public class SongSpinner extends java.applet.Applet {
 		JPanel buttonsPanel = new JPanel();
 		JButton perfectWebButton = new JButton("Perfect Web");
 		JButton randomLinearButton = new JButton("Random Linear");
-		JButton PlayButton = new JButton("Play Web");
+		JButton playButton = new JButton("Play Web");
 		JButton clearWebButton = new JButton("Clear Web");
 		buttonsPanel.add(perfectWebButton);
 		buttonsPanel.add(randomLinearButton);
 		buttonsPanel.add(clearWebButton);
+		buttonsPanel.add(playButton);
 		mainFrame.getContentPane().add(buttonsPanel, BorderLayout.SOUTH);
 		
 		// Callback Functions
@@ -46,7 +47,7 @@ public class SongSpinner extends java.applet.Applet {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				webComp.setWeb(Web.BuildLinearWeb(10, 10, 1, .7f, .5f));
+				webComp.setWeb(Web.BuildLinearWeb(10, 10, 1, .7f, .2f));
 			}
 			
 		});
@@ -56,6 +57,15 @@ public class SongSpinner extends java.applet.Applet {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				webComp.clearWeb();
+			}
+			
+		});
+		
+		playButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				webComp.playWeb();
 			}
 			
 		});
